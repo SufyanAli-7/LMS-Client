@@ -9,7 +9,8 @@ const reducer = (state, action) => {
     const { type , payload } = action
   switch (type) {
     case "SET_LOGIN":
-      return { isAuth: true, user: payload };
+      const isValidUser = !!(payload && typeof payload === 'object' && Object.keys(payload).length > 0);
+      return { isAuth: isValidUser, user: isValidUser ? payload : {} };
     case "SET_LOGOUT":
       return initialState;
     default:
