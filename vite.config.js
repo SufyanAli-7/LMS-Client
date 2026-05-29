@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: env.VITE_API_BASE_URL || 'http://lms-server-chi-seven.vercel.app',
+          target: env.VITE_API_BASE_URL || 'https://lms-server-chi-seven.vercel.app',
           changeOrigin: true,
         },
       },
