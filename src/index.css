@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+#root{
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+}
+
+main{
+    flex: 1 0 auto;
+}
+
+/* Sleek custom scrollbars for the tables and scrollable elements */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.35);
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.55);
+}
+
+/* Ensure Ant Design table horizontal scroll containers look premium and scroll smoothly */
+.ant-table-content, .ant-table-body {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.35) transparent;
+    -webkit-overflow-scrolling: touch;
+}
