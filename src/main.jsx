@@ -22,6 +22,20 @@ if (import.meta.env.VITE_API_BASE_URL) {
 // Enable sending and saving cookies globally on all cross-site requests
 axios.defaults.withCredentials = true;
 
+// Automatically inject JWT token from localStorage into Authorization headers for cross-domain auth
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>

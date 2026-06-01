@@ -20,6 +20,9 @@ const InstructorLogin = () => {
       password: values.password
     })
       .then((response) => {
+        if (response.data?.token) {
+          localStorage.setItem('token', response.data.token);
+        }
         window.toastify?.(response.data?.message || 'Login successful!', 'success');
         dispatch({ type: "SET_LOGIN", payload: response.data.user });
         readProfile();

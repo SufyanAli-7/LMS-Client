@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
         })
         .catch((error) => {
             console.log(error);
-            
+            localStorage.removeItem('token');
         })
         .finally(() => {
             setIsAppLoading(false)
@@ -49,6 +49,7 @@ const AuthProvider = ({ children }) => {
         const userRole = state.user?.role;
         axios.post('/api/auth/logout', {}, { withCredentials: true })
         .then(() => {
+            localStorage.removeItem('token');
             dispatch({ type: "SET_LOGOUT" })
             if (userRole === 'admin') {
                 navigate('/auth/admin/login')
@@ -61,7 +62,9 @@ const AuthProvider = ({ children }) => {
         })
         .catch((error) => {
             console.log(error);
-            
+            localStorage.removeItem('token');
+            dispatch({ type: "SET_LOGOUT" })
+            navigate('/auth/login')
         })
         .finally(() => {
             setIsAppLoading(false)
